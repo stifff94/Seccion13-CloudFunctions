@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-grafico-barra-horizontal',
   templateUrl: './grafico-barra-horizontal.component.html',
   styleUrls: ['./grafico-barra-horizontal.component.css']
 })
-export class GraficoBarraHorizontalComponent  {
+export class GraficoBarraHorizontalComponent implements OnDestroy {
 
   results: any[]=[
     
@@ -43,12 +44,27 @@ export class GraficoBarraHorizontalComponent  {
 
   colorScheme = 'nightLights';
 
+  intervarlo;
   constructor() {
     
+    
+    this.intervarlo=setInterval(() =>{
+      console.log("tick");
+      const newresults = [...this.results];
+
+      for( let i in newresults){
+        newresults[i].value = Math.round(Math.random()*100);
+      }
+      this.results = [...newresults];
+    }, 1500);
   }
 
   onSelect(event) {
     console.log(event);
+  }
+
+  ngOnDestroy(){
+      clearInterval( this.intervarlo);
   }
 
 }
