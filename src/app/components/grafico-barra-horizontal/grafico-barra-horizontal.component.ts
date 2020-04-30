@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Input } from '@angular/core';
 import { interval } from 'rxjs';
 
 @Component({
@@ -8,55 +8,60 @@ import { interval } from 'rxjs';
 })
 export class GraficoBarraHorizontalComponent implements OnDestroy {
 
-  results: any[]=[
+
+  @Input() results: any[] = [];
+
+  // results: any[]=[
     
-      {
-        "name": "Juego1",
-        "value": 20
-      },
-      {
-        "name": "Juego2",
-        "value": 30
-      },
-      {
-        "name": "Juego3",
-        "value": 10
-      },
-      {
-        "name": "Juego4",
-        "value": 30
-      }
+  //     {
+  //       "name": "Juego1",
+  //       "value": 20
+  //     },
+  //     {
+  //       "name": "Juego2",
+  //       "value": 30
+  //     },
+  //     {
+  //       "name": "Juego3",
+  //       "value": 10
+  //     },
+  //     {
+  //       "name": "Juego4",
+  //       "value": 30
+  //     }
     
-  ];
+  // ];
   
 
   
 
-  // options
+  //options
   showXAxis = true;
   showYAxis = true;
   gradient = true;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Juegos';
+  xAxisLabel = 'Votos';
   showYAxisLabel = true;
-  yAxisLabel = 'Votos';
+  yAxisLabel = 'Juegos';
 
   colorScheme = 'nightLights';
 
-  intervarlo;
+  //intervarlo;
   constructor() {
     
     
-    this.intervarlo=setInterval(() =>{
-      console.log("tick");
-      const newresults = [...this.results];
+    // this.intervarlo=setInterval(() =>{
+    //   console.log("tick");
+    //   const newresults = [...this.results];
 
-      for( let i in newresults){
-        newresults[i].value = Math.round(Math.random()*100);
-      }
-      this.results = [...newresults];
-    }, 1500);
+    //   for( let i in newresults){
+    //     newresults[i].value = Math.round(Math.random()*100);
+    //   }
+    //   this.results = [...newresults];
+    // }, 1500);
+    
+
   }
 
   onSelect(event) {
@@ -64,7 +69,7 @@ export class GraficoBarraHorizontalComponent implements OnDestroy {
   }
 
   ngOnDestroy(){
-      clearInterval( this.intervarlo);
+      //clearInterval( this.intervarlo);
   }
 
 }
